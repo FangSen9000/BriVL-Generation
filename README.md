@@ -6,6 +6,12 @@ This project includes the code for BriVL/CLIP to generate images using VQGAN and
 
 This is the basic work of the text generating image we mentioned, and **it's our reference code**, don't get confused. The code is sourced from multiple open source repositories and is referenced at the end of the article.
 
+## Illustration of ICASSP Workshop 2023
+
+![compare1](https://user-images.githubusercontent.com/72308243/223319788-0fc93678-0c83-4e29-bc42-94062779dfd3.png)
+
+![compare2](https://user-images.githubusercontent.com/72308243/223319795-31ead77d-c3f7-46a3-bfeb-bb7424f23b90.png)
+
 ### Code description
 
 text2img：
