@@ -1,18 +1,26 @@
-# text2img
+# BriVL-Generation
 
-### 项目描述
+## Introduction
 
-模式识别课设代码：
+This project includes the code for BriVL/CLIP to generate images using VQGAN and DALLE, which is the image generation part of our paper **New Audio Representations Image Gan Generation from BriVL** and xx (ongoing work).
 
-- 基于Wukong中文开源数据集，进行CLIP图文检索模型、VQVAE图像编解码模型训练，VQVAE+VQGAN、VQGAN+DALLE图像生成模型训练，开源中文图文检索模型BriVL与自训CLIP性能比较。
-- 最后使用VQGAN的进行DALLE模型训练，实现了食物领域的文本生成图像，并使用BriVL重排生成结果。
+This is the basic work of the text generating image we mentioned, and **it's our reference code**, don't get confused. The code is sourced from multiple open source repositories and is referenced at the end of the article.
 
-### 环境依赖
+### Code description
 
-- 主要基于pytorch环境
-- 具体环境依赖参考各个项目下的README
+text2img：
 
-### 目录结构 & 重要代码文件
+- Based on Wukong Chinese open source data set, CLIP image and text retrieval model, VQVAE image encoding and decoding model training, VQVAE+VQGAN, VQGAN+DALLE image generation model training, open source Chinese image and text retrieval model BriVL and self-training CLIP performance comparison.
+- Finally, we used VQGAN's DALLE model training to realize the text generation image, and used BriVL to rearrange the generated results. For example, the following food generation results are the inspiration for us to use volunteers to experiment with the relevance of food, but we are slightly different from the following code, which is audio guided generation.
+
+Again, this is the text generated image part of our reference code, don't get confused, the following introduction is **for text2img only**.
+
+### Environmental dependence
+
+- Primarily based on the pytorch environment
+- The specific environment depends on the README under each project
+
+### Directory structure & Important code files
 
 ```
 │  README.md
@@ -169,3 +177,4 @@ Train on V100, 25.37h, resolution=256（train loss未完全收敛）
 - https://github.com/mlfoundations/open_clip
 - https://github.com/BAAI-WuDao/BriVL
 - https://github.com/lucidrains/DALLE-pytorch
+- https://github.com/ZYiJie/text2img
