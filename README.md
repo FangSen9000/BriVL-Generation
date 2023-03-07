@@ -24,21 +24,21 @@ Again, this is the text generated image part of our reference code, don't get co
 
 ```
 │  README.md
-│  dalle_gen.py  调用训练得到的DALLE模型，指定文本生成对应图像
-│  clip_sort.py  调用BriVL对生成结果进行rerank
+│  dalle_gen.py  Call the trained DALLE model and specify the text to generate the corresponding image
+│  clip_sort.py  Call BriVL to rerank the generated results
 ├─form_data
-│  ├─dealData_wukong.ipynb  对wukong原始数据的下载、清洗以及划分train&val
-│  └─foodNames.txt  食物关键词，用于从wukong数据中筛选食物相关的图文对
-├─open_clip   CLIP模型训练项目
-├─BriVL-code-inference  BriVL模型推理代码
+│  ├─dealData_wukong.ipynb  Download, clean and partition the original data of wukong train&val
+│  └─foodNames.txt  Food keywords, used to filter food-related image and text pairs from wukong data
+├─open_clip   CLIP model training program
+├─BriVL-code-inference  BriVL model inference code
 │  
-└─DALLE-pytorch  VQVAE模型训练 DALLE模型训练
+└─DALLE-pytorch  VQVAE model training DALLE model training
 
 ```
 
-### 运行
+### Run
 
-- 训练CLIP模型
+- Training CLIP model
 
   ```
   cd open_clip
@@ -58,7 +58,7 @@ Again, this is the text generated image part of our reference code, don't get co
     --model RN50 >log 2>&1 &
   ```
 
-- 训练VQVAE模型
+- Training VQVAE model
   
   ```
   cd DALLE-pytorch
@@ -71,7 +71,7 @@ Again, this is the text generated image part of our reference code, don't get co
     --image_size=256 >vae.log 2>&1 &
   ```
 
-- 训练DALLE模型
+- Training DALLE model
 
   ```
   cd DALLE-pytorch
@@ -83,7 +83,7 @@ Again, this is the text generated image part of our reference code, don't get co
     --dalle_output_file_name=vae_dalle >dalle.log 2>&1 &
   ```
 
-- 使用BriVL进行推理
+- Use BriVL for reasoning
 
   ```
   更新BriVL-code-inference/cfg/test_xyb.yml中的JSONPATH
@@ -91,45 +91,46 @@ Again, this is the text generated image part of our reference code, don't get co
   sh evaluation.sh
   ```
 
-- 使用DALLE生成图像&BriVL推理
+- Using DALLE to generate images & BriVL reasoning
 
   ```
   python dalle_gen.py [text] [img_num] [save_path]
-    基于句子生成图像
+    //Image generation based on sentences
 
   python clip_sort.py [text] [img_num] [save_path]
-    基于句子和图像计算相似度，输出排序后结果
+    //Calculate the similarity based on sentences and images, and output the sorted results
   
   parameter：
-    text：输入食物相关的句子，长度最好大于10
-    img_num：生成图像数量
-    save_path：图像保存地址
+    text：//Input food-related sentences, preferably longer than 10
+    img_num：//Number of generated images
+    save_path：//Image storage address
   ```
 
-### 实验过程
+### Experimental process
 
-> 下面所给图像均是截图，非原始生成图像
+> The following is the experimental process taking the text generation diagram as an example.
+> The following images are all screenshots, not original generated images.
 
-#### **数据预测处理**
+#### **Data prediction processing**
 
-数据集：WuKong 华为诺亚开源的中文图文数据集，其中包含一亿个来自网络的中文图文对。
+Data set: WuKong Huawei Noah's open source Chinese image and text data set, including 100 million Chinese image and text pairs from the network.
 
-出于训练收敛速度的考虑，我们限定了本实验所用的图片域，通过词表筛选图像caption中的关键词，挑选出食物相关的图片。此外，过滤caption长度大于32、包含特殊特殊字符的caption、image宽高比大于3以及image size过小的数据样本。
+For the sake of training convergence speed, we limited the image domain used in this experiment, filtered the keywords in the image caption through the vocabulary, and selected the food-related images. In addition, filter data samples with a caption length greater than 32, a caption containing special characters, an image aspect ratio greater than 3, and an image size too small.
 
-最终从WuKong数据集的前十个文件中（10/255，合计3.9M图文对）清洗得到51k样本；按9:1划分train-validation dataset，如下表：
+Finally, 51k samples were obtained from the first ten files of WuKong dataset (10/255, 3.9M pairs in total); The train-validation dataset is divided by 9:1, as shown in the following table:
 
 | Type  | Size  |
 | ----- | ----- |
 | train | 45975 |
 | val   | 5112  |
 
-所得数据图文相关性整体较强，但图片范围不仅限于食物题材（如下右一图）。
+The correlation between the image and text of the obtained data is relatively strong as a whole, but the range of pictures is not limited to food subjects (the right figure below).
 
 ![](img/1.png)
 
-#### **实验一：VQVAE+DALLE模型训练**
+#### **Experiment 1: VQVAE+DALLE model training**
 
-1. VQVAE训练结果
+1. VQVAE training results
 
 - Train on V100, 40min, resolution=128
 ![](img/2.png)
@@ -137,15 +138,15 @@ Again, this is the text generated image part of our reference code, don't get co
 - Train on V100, 36min, resolution=256
 ![](img/3.png)
 
-2. 基于VQVAE的DALLE模型训练结果
-- 左边两张图为训练过程中原图以及基于图像caption的生成结果；右图为基于文本输入的生成结果
+2. DALLE model training results based on VQVAE
+-The two images on the left are the original image of the training process and the generation results based on image captions; The right figure shows the generated results based on text input
 ![](img/4.png)
 
 
 
-#### **实验二：开源VQGAN+DALLE模型训练**
+#### **Experiment 2: Open source VQGAN+DALLE model training**
 
-训练结果
+Training results
 
 Train on V100, 25.37h, resolution=256（train loss未完全收敛）
 
@@ -153,9 +154,9 @@ Train on V100, 25.37h, resolution=256（train loss未完全收敛）
 
 ![基于文本输入的生成结果](img/6.png)
 
-#### **实验三：VQGAN+DALLE+BriVL**
+#### **Experiment 3: VQGAN+DALLE+BriVL**
 
-输入文本：这一碗红烧牛肉面的肉好多，是真的好吃
+Input text: This bowl of braised beef noodles has a lot of meat, which is really delicious.
 
 - VQGAN+DALLE  Random 4
 
@@ -166,13 +167,13 @@ Train on V100, 25.37h, resolution=256（train loss未完全收敛）
 ![](img/8.png)
 
 
-### 相关资源
+### Related resources
 
-- wukong数据集：https://wukong-dataset.github.io/wukong-dataset/benchmark.html
-- 使用的开源预训练VQGAN：https://heibox.uni-heidelberg.de/f/140747ba53464f49b476/?dl=1
-- 中文文本tokenizer：https://huggingface.co/hfl/chinese-roberta-wwm-ext
+- wukong DataSet：https://wukong-dataset.github.io/wukong-dataset/benchmark.html
+- Open source pre-training used VQGAN：https://heibox.uni-heidelberg.de/f/140747ba53464f49b476/?dl=1
+- Chinese text tokenizer：https://huggingface.co/hfl/chinese-roberta-wwm-ext
 
-### 参考项目
+### Reference items
 
 - https://github.com/mlfoundations/open_clip
 - https://github.com/BAAI-WuDao/BriVL
