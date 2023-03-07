@@ -11,7 +11,7 @@ This is the basic work of the text generating image we mentioned, and **it's our
 text2img：
 
 - Based on Wukong Chinese open source data set, CLIP image and text retrieval model, VQVAE image encoding and decoding model training, VQVAE+VQGAN, VQGAN+DALLE image generation model training, open source Chinese image and text retrieval model BriVL and self-training CLIP performance comparison.
-- Finally, we used VQGAN's DALLE model training to realize the text generation image, and used BriVL to rearrange the generated results. For example, the following food generation results are the inspiration for us to use volunteers to experiment with the relevance of food, but we are slightly different from the following code, which is audio guided generation in paper by using [WavBriVL](https://github.com/FangSen9000/WavBriVL).
+- Finally, we used VQGAN's DALLE model training to realize the text generation image, and used BriVL to rearrange the generated results. For example, the following food generation results are the inspiration for us to use volunteers to experiment with the relevance of food, but we are slightly different from the following code, which is audio guided generation in our paper by using [WavBriVL](https://github.com/FangSen9000/WavBriVL).
 
 Again, this is the text generated image part of our reference code, don't get confused, the following introduction is **for text2img only**.
 
