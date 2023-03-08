@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project includes the code for BriVL/CLIP to generate images using VQGAN and DALLE, which is the image generation part of our paper **New Audio Representations Image Gan Generation from BriVL** and xx (ongoing work).
+This project includes the code for BriVL/CLIP to generate images using VQGAN and DALLE, which is the image generation part of our paper **New Audio Representations Image Gan Generation from BriVL**.
 
 This is the basic work of the text generating image we mentioned, and **it's our reference code**, don't get confused. The code is sourced from multiple open source repositories and is referenced at the end of the article.
 
