@@ -13,9 +13,31 @@ This is the basic work of the text generating image we mentioned, and **it's our
 
 ![compare2](https://user-images.githubusercontent.com/72308243/223319795-31ead77d-c3f7-46a3-bfeb-bb7424f23b90.png)
 
-### Code description
+## Cite Bibtex
 
-text2img's intro：
+```
+@misc{https://doi.org/10.48550/arxiv.2303.04585,
+  doi = {10.48550/ARXIV.2303.04585},
+  
+  url = {https://arxiv.org/abs/2303.04585},
+  
+  author = {Fang, Sen and Wu, Yangjian and Gao, Bowen and Teoh, Teik Toe},
+  
+  keywords = {Sound (cs.SD), Artificial Intelligence (cs.AI), Audio and Speech Processing (eess.AS), FOS: Computer and information sciences, FOS: Computer and information sciences, FOS: Electrical engineering, electronic engineering, information engineering, FOS: Electrical engineering, electronic engineering, information engineering},
+  
+  title = {New Audio Representations Image Gan Generation from BriVL},
+  
+  publisher = {arXiv},
+  
+  year = {2023},
+  
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+```
+
+## Code description
+
+### text2img's intro：
 
 - Based on Wukong Chinese open source data set, CLIP image and text retrieval model, VQVAE image encoding and decoding model training, VQVAE+VQGAN, VQGAN+DALLE image generation model training, open source Chinese image and text retrieval model BriVL and self-training CLIP performance comparison.
 - Finally, this basic work used VQGAN's DALLE model training to realize the text generation image, and used BriVL to rearrange the generated results. For example, the following food generation results are the inspiration for us to use volunteers to experiment with the relevance of food.
